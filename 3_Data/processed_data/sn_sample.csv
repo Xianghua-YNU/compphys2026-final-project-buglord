@@ -1,5 +1,3 @@
-# A small, synthetic example SN sample for demonstration purposes
-# columns: z,mu,mu_err
 z,mu,mu_err
 0.01,33.2,0.15
 0.03,35.6,0.16
