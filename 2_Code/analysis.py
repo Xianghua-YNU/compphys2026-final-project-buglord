@@ -37,8 +37,8 @@ def plot_mu_z(z, mu_obs, mu_err, samples, filename="mu_fit.png", n_models=100):
 
     plt.figure(figsize=(8, 6))
     # plot posterior predictive curves
-    for i in idx:
-        Om, mu0 = samples[i]
+   Om, Ol = samples[i]
+   mu0 = 0.3
         mu_model = distance_modulus(zgrid, Om) + mu0
         plt.plot(zgrid, mu_model, color="C0", alpha=0.05)
 
