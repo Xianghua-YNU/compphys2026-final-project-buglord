@@ -1,22 +1,38 @@
-# 2_Code/ - 源代码目录
 
-**目的**: 存放所有用于模拟、分析和可视化的代码。代码的质量是评分的重要组成部分。
+This directory implements the emcee-based MCMC pipeline to fit the matter density parameter Omega_m
+from Type Ia supernova distance modulus data.
 
-### **结构原则：**
-本项目**不强制要求固定文件名**，但必须遵循**逻辑解耦**的原则。建议按照以下功能模块划分您的代码：
+Files
+- cosmology.py : cosmological model functions (E(z), comoving distance, luminosity distance, distance modulus).
+- data_utils.py: small helper to load a CSV with columns z, mu, mu_err.
+- emcee_fit.py : likelihood / prior / emcee run wrapper. Fits parameters (Omega_m, mu0).
+- emcee_fit_2d.py : emcee run wrapper to fit (Omega_m, Omega_lambda, mu0).
+- ls_fit.py   : least-squares frequentist fit for comparison.
+- analysis.py  : plotting helpers (corner, mu(z) fit visualization).
+- main.py      : entrypoint for single fit. Example usage below.
+- run_all.py   : convenience script to run the MCMC 1D, MCMC 2D, and least-squares comparison.
+- requirements.txt : Python dependencies for this directory.
 
-1.  **入口模块** (如 `main.py`): 负责设置物理参数、初始化环境、调用算法并启动流程。
-2.  **物理/算法模块** (如 `solvers.py` 或 `physics.py`): 实现核心数值算法（如 RK4, Metropolis, PINN 损失函数等）。应保持独立性，不包含绘图逻辑。
-3.  **分析与可视化** (如 `analysis.py` 或 `plot_utils.py`): 负责处理原始数据、计算物理量（如能量偏差、关联函数）并生成论文所需的图表。
+How to run
+1) Install dependencies:
+   pip install -r 2_Code/requirements.txt
 
-### **必需文件：**
-- **`README.md` (本文件)**: 必须清晰说明：
-    - 每个代码文件的功能。
-    - 如何配置环境 (`pip install -r requirements.txt`)。
-    - **如何运行主程序**以得到论文中的结果。
-- **`requirements.txt`**: 项目依赖清单。
+2) Run a quick full pipeline (recommended for first test):
+   python 2_Code/run_all.py --data 3_Data/processed_data/sn_sample.csv --quick
 
-### **代码规范要求：**
-- **物理注释**: 必须对核心物理方程和算法步骤进行注释。
-- **参数化设计**: 物理参数应集中定义，严禁在循环中出现“魔法数字”。
-- **AI 声明**: 若使用 AI 辅助编写，需在代码中注明。
+3) Or run a longer MCMC for production-quality results:
+   python 2_Code/run_all.py --data 3_Data/processed_data/sn_sample.csv
+
+Outputs
+- 2_Code/output/ contains a set of files:
+  - samples_omega_m.npz
+  - corner_omega_m.png
+  - mu_fit_omega_m.png
+  - samples_omega_m_omega_lambda.npz
+  - corner_omega_m_omega_lambda.png
+  - mu_fit_omega_m_omega_lambda.png
+  - ls_fit_omega_m.txt
+
+Notes
+- H0 is fixed at 70 km/s/Mpc by default; mu0 is included as a nuisance parameter absorbing absolute magnitude/H0 degeneracy.
+- The 2D fit includes Omega_lambda as a free parameter; priors are broad but constrained to avoid pathological regions.
