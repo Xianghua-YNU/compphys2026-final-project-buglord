@@ -49,7 +49,7 @@ def plot_mu_z(z, mu_obs, mu_err, samples, filename="mu_fit.png", n_models=100):
 
     plt.errorbar(z, mu_obs, yerr=mu_err, fmt="o", ms=4, color="k", label="data")
     plt.xlabel("z")
-    plt.ylabel(r"Distance modulus $(z)$")
+    plt.ylabel(r"Distance modulus (z)")
     plt.legend()
     plt.tight_layout()
     plt.savefig(os.path.join(OUTPUT_DIR, filename), dpi=150)
