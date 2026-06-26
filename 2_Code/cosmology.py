@@ -28,7 +28,7 @@ def E(z, Omega_m, Omega_lambda=None):
     """
     if Omega_lambda is None:
         Omega_lambda = 1.0 - Omega_m
-    return np.sqrt(Omega_m * (1.0 + z) ** 3 + Omega_lambda)
+    return np.sqrt(np.maximum(Omega_m * (1.0 + z) ** 3 + Omega_lambda, 1e-10))
 
 
 def _invE_integrand(zp, Omega_m, Omega_lambda):
