@@ -48,7 +48,7 @@ else:
 mu0 = 0.3
 mu_model = distance_modulus(zgrid, Om) + mu0
     # plot best-fit median curve
-    med = np.median(samples, axis=0)
+med = np.median(samples, axis=0)
     mu_med = distance_modulus(zgrid, med[0]) + med[1]
     plt.plot(zgrid, mu_med, color="C1", lw=2, label="posterior median")
 
