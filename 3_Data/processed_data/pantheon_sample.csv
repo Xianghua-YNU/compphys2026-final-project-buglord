@@ -1,0 +1,13 @@
+# Micro Pantheon-style sample (z,mu,mu_err)
+# This is a small demonstration sample (do not use for science-quality results)
+z,mu,mu_err
+0.010,33.15,0.15
+0.030,35.60,0.16
+0.050,36.85,0.15
+0.100,38.95,0.17
+0.200,40.80,0.18
+0.300,41.95,0.18
+0.400,42.85,0.19
+0.600,44.05,0.20
+0.800,45.05,0.22
+1.000,45.85,0.25
