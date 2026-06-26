@@ -16,11 +16,12 @@ Files
 How to run
 1) Install dependencies:
    pip install -r 2_Code/requirements.txt
+   pip install emcee
 
-2) Run a quick full pipeline (recommended for first test):
+3) Run a quick full pipeline (recommended for first test):
    python 2_Code/run_all.py --data 3_Data/processed_data/sn_sample.csv --quick
 
-3) Or run a longer MCMC for production-quality results:
+4) Or run a longer MCMC for production-quality results:
    python 2_Code/run_all.py --data 3_Data/processed_data/sn_sample.csv
 
 Outputs
