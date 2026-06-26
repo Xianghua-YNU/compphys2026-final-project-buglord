@@ -1,3 +1,4 @@
+
 """
 Analysis and plotting utilities: corner plot of posterior and mu(z) fit plot.
 """
@@ -37,11 +38,11 @@ def plot_mu_z(z, mu_obs, mu_err, samples, filename="mu_fit.png", n_models=100):
 
     plt.figure(figsize=(8, 6))
     # plot posterior predictive curves
-for i in range(len(samples)):
-    Om, Ol = samples[i]
-    mu0 = 0.3
-    mu_model = distance_modulus(zgrid, Om) + mu0
-    plt.plot(zgrid, mu_model, color="C0", alpha=0.05)
+    for i in range(len(samples)):
+        Om, Ol = samples[i]
+        mu0 = 0.3
+        mu_model = distance_modulus(zgrid, Om) + mu0
+        plt.plot(zgrid, mu_model, color="C0", alpha=0.05)
 
     # plot best-fit median curve
     med = np.median(samples, axis=0)
@@ -50,7 +51,7 @@ for i in range(len(samples)):
 
     plt.errorbar(z, mu_obs, yerr=mu_err, fmt="o", ms=4, color="k", label="data")
     plt.xlabel("z")
-    plt.ylabel(r"Distance modulus (z)")
+    plt.ylabel("Distance modulus (z)")
     plt.legend()
     plt.tight_layout()
     plt.savefig(os.path.join(OUTPUT_DIR, filename), dpi=150)
