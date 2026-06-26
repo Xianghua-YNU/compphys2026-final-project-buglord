@@ -7,22 +7,33 @@ Files
 - cosmology.py : cosmological model functions (E(z), comoving distance, luminosity distance, distance modulus).
 - data_utils.py: small helper to load a CSV with columns z, mu, mu_err.
 - emcee_fit.py : likelihood / prior / emcee run wrapper. Fits parameters (Omega_m, mu0).
+- emcee_fit_2d.py : emcee run wrapper to fit (Omega_m, Omega_lambda, mu0).
+- ls_fit.py   : least-squares frequentist fit for comparison.
 - analysis.py  : plotting helpers (corner plot and mu(z) fit visualization).
-- main.py      : entrypoint. Example usage below.
+- main.py      : entrypoint for single fit. Example usage below.
+- run_all.py   : convenience script to run the MCMC 1D, MCMC 2D, and least-squares comparison.
 - requirements.txt : Python dependencies for this directory.
 
 How to run
 1) Install dependencies:
    pip install -r 2_Code/requirements.txt
 
-2) Run the MCMC pipeline (example):
-   python 2_Code/main.py --data 3_Data/processed_data/sn_sample.csv --nwalkers 32 --nsteps 4000
+2) Run a quick full pipeline (recommended for first test):
+   python 2_Code/run_all.py --data 3_Data/processed_data/sn_sample.csv --quick
+
+3) Or run a longer MCMC for production-quality results:
+   python 2_Code/run_all.py --data 3_Data/processed_data/sn_sample.csv
 
 Outputs
-- 2_Code/output/samples.npz : compressed numpy archive containing posterior samples (samples key)
-- 2_Code/output/corner.png  : corner plot of posterior
-- 2_Code/output/mu_fit.png  : mu(z) with posterior predictive curves
+- 2_Code/output/ contains a set of files:
+  - samples_omega_m.npz
+  - corner_omega_m.png
+  - mu_fit_omega_m.png
+  - samples_omega_m_omega_lambda.npz
+  - corner_omega_m_omega_lambda.png
+  - mu_fit_omega_m_omega_lambda.png
+  - ls_fit_omega_m.txt
 
 Notes
 - H0 is fixed at 70 km/s/Mpc by default; mu0 is included as a nuisance parameter absorbing absolute magnitude/H0 degeneracy.
-- The code includes brief AI-assistance declarations in file headers where relevant.
+- The 2D fit includes Omega_lambda as a free parameter; priors are broad but constrained to avoid pathological regions.
