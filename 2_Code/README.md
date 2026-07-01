@@ -24,7 +24,7 @@ How to run
 4) Or run a longer MCMC for production-quality results:
    python 2_Code/run_all.py --data 3_Data/processed_data/sn_sample.csv
 
-5）If you want to reproduce more complete results, please use this:python 2_Code/run_all.py --data 3_Data/raw_data/sn_sample.csv --quick
+5) If you want to reproduce more complete results, please use this:python 2_Code/run_all.py --data 3_Data/raw_data/all_sample.csv --quick
 
 Outputs
 - 2_Code/output/ contains a set of files:
