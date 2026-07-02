@@ -1,0 +1,9 @@
+# 51 Peg b radial velocity data (placeholder)
+# This file is a placeholder indicating the raw CSV has not been downloaded by the assistant in this commit.
+# To obtain the real data, run the downloader script `51_Peg_b_rv_downloader.py` in this directory.
+# Once downloaded, the script will save the CSV to: 51_Peg_b_rv.csv
+
+# VizieR table reference:
+# https://cdsarc.cds.unistra.fr/viz-bin/cat/J/A+A/646/A159?table=table1&format=csv
+
+PLACEHOLDER: run the downloader script to fetch the CSV from VizieR and replace this file with the real data.
